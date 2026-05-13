@@ -1,0 +1,11 @@
+# -----------------------------
+# Cost function
+# -----------------------------
+estimator = StatevectorEstimator()
+
+def cost(theta,n,depth):
+    qc = ansatz(theta,n,depth)
+    result = estimator.run([(qc, H)]).result()
+    result[0].data.evs
+    return float(result[0].data.evs)   # cast to float (important)
+
