@@ -1,0 +1,24 @@
+# -----------------------------
+# Ansatz (you can deepen later)
+# -----------------------------
+def ansatz(theta, n, depth):
+    qc = QuantumCircuit(n)
+    idx = 0 #Useful for updating the theta
+    
+    for d in range(depth):
+    
+        # Local rotations (RY)
+        for i in range(n):
+            qc.ry(theta[idx], i)
+            idx += 1
+        
+        # Entanglement
+        for i in range(n-1):
+            qc.cx(i, i+1)
+        
+        # Expressive layer (RX)
+        for i in range(n):
+            qc.rx(theta[idx], i)
+            idx += 1
+    
+    return qc
